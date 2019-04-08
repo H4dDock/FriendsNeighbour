@@ -22,8 +22,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserDetailsServiceImpl userDetailsService;
 
-    // регистрируем нашу реализацию UserDetailsService
-    // а также PasswordEncoder для приведения пароля в формат SHA1
+
     @Autowired
     public void registerGlobalAuthentication(AuthenticationManagerBuilder auth) throws Exception {
         auth
@@ -37,13 +36,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf()
                 .disable()
                 .authorizeRequests()
-                .antMatchers("/resources/**", "/**").permitAll()
+                .antMatchers("/**").permitAll()
                 .anyRequest().permitAll()
                 .and();
 
         http.formLogin()
                 .loginProcessingUrl("/j_spring_security_check")
                 .loginPage("/login")
+                .defaultSuccessUrl("/mainPage")
                 .failureUrl("/login?error")
                 .usernameParameter("j_username")
                 .passwordParameter("j_password")
@@ -61,8 +61,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     }
 
-    // Указываем Spring контейнеру, что надо инициализировать ShaPasswordEncoder
-    // Это можно вынести в WebAppConfig, но для понимаемости оставил тут
+
     @Bean
     public ShaPasswordEncoder getShaPasswordEncoder(){
         return new ShaPasswordEncoder();

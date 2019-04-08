@@ -25,6 +25,7 @@
     </p>
     <sec:authorize access="!isAuthenticated()">
       <p><a class="btn btn-lg btn-success" href="<c:url value="/login" />" role="button">Войти</a></p>
+      <p><a class="btn btn-lg btn-success" href="<c:url value="/registration" />" role="button">Регистрация</a></p>
     </sec:authorize>
     <sec:authorize access="isAuthenticated()">
       <p>Ваш логин: <sec:authentication property="principal.username" /></p>
