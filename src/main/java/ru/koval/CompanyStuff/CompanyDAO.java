@@ -8,7 +8,7 @@ import java.util.List;
 
 public class CompanyDAO {
     private Connection getConnection() throws SQLException {
-        return DriverManager.getConnection("jdbc:mysql://localhost:3306/JDBCTraining", "root", "0000");
+        return DriverManager.getConnection("jdbc:mysql://localhost:3306/JDBCTraining?verifyServerCertificate=false&useSSL=true", "root", "0000");
     }
 
     public void addToTable(Company company) throws SQLException {

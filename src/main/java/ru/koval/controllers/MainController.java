@@ -2,8 +2,9 @@ package ru.koval.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.koval.CompanyStuff.Company;
 import ru.koval.CompanyStuff.CompanyDAO;
@@ -12,12 +13,51 @@ import ru.koval.UsersStuff.UserDAO;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class MainController {
 
-    @RequestMapping("/")
-    public String start(Model model){
+    @GetMapping("/mainPage")
+    public String mainPage(Model model) throws SQLException {
+        CompanyDAO companyDAO = new CompanyDAO();
+        List<Company> companies = companyDAO.getAllFromTable();
+        model.addAttribute("companies", companies);
+        return "mainPage";
+    }
+
+    @GetMapping("/greeting")
+    public String greeting(@RequestParam(name="name", required=false, defaultValue="World") String name, Model model) {
+        model.addAttribute("name", name);
+        return "greeting";
+    }
+
+    @GetMapping("/")
+    public String start(Model model) {
+        return "index";
+    }
+
+    @GetMapping("/registration")
+    public String registration(Model model) {
+        return "registration";
+    }
+
+    @PostMapping("/registration")
+    public String newUser(@RequestParam(name = "username") String name, @RequestParam(name = "password") String pass) throws SQLException {
+        UserDAO userDAO = new UserDAO();
+
+        userDAO.addToTable(new User(name, pass));
+
+        return "redirect:/login";
+    }
+}
+
+/*
+@Controller
+public class MainController {
+
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public String start(){
         return "index";
     }
 
@@ -52,3 +92,4 @@ public class MainController {
         return "mainPage";
     }
 }
+*/

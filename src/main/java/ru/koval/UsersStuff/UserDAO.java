@@ -4,7 +4,7 @@ import java.sql.*;
 
 public class UserDAO {
     private Connection getConnection() throws SQLException {
-        return DriverManager.getConnection("jdbc:mysql://localhost:3306/JDBCTraining", "root", "0000");
+        return DriverManager.getConnection("jdbc:mysql://localhost:3306/JDBCTraining?verifyServerCertificate=false&useSSL=true", "root", "0000");
     }
 
     public void addToTable(User user) throws SQLException {
