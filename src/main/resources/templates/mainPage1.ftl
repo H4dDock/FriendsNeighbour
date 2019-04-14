@@ -7,5 +7,5 @@
         <li> ${company.getCompanyName()} </li>
     </ul>
     </#list>
-    <@auth.logout/>
+
 </@c.page>

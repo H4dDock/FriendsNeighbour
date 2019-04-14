@@ -1,5 +1,12 @@
 package ru.koval.UsersStuff;
 
-public enum UsersRoles {
-    Admin, User, Anonym
+import org.springframework.security.core.GrantedAuthority;
+
+public enum UsersRoles implements GrantedAuthority {
+    Admin, User;
+
+    @Override
+    public String getAuthority() {
+        return name();
+    }
 }

@@ -3,5 +3,5 @@
 
 <@c.page>
     Add new user
-    <@auth.login "/registration"/>
+    <@auth.login "/registration" true/>
 </@c.page>

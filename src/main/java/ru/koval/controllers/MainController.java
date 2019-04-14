@@ -4,7 +4,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.koval.CompanyStuff.Company;
 import ru.koval.CompanyStuff.CompanyDAO;
@@ -13,7 +12,6 @@ import ru.koval.UsersStuff.UserDAO;
 
 import java.sql.SQLException;
 import java.util.List;
-import java.util.Map;
 
 @Controller
 public class MainController {
@@ -23,7 +21,7 @@ public class MainController {
         CompanyDAO companyDAO = new CompanyDAO();
         List<Company> companies = companyDAO.getAllFromTable();
         model.addAttribute("companies", companies);
-        return "mainPage";
+        return "mainPage1";
     }
 
     @GetMapping("/greeting")

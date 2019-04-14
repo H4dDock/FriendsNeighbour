@@ -1,0 +1,49 @@
+
+*{
+    box-sizing: border-box;
+}
+
+body{
+    color: wheat;
+    font-size: 30px;
+}
+
+.container:after {
+    visibility: hidden;
+    display: block;
+    content: "";
+    clear: both;
+    height: 0;
+}
+
+.header{
+    background: black;
+    height: 200px;
+    margin-bottom: 10px;
+}
+.content{
+    float: right;
+    width: 70%;
+}
+
+.inner-content{
+    background: black;
+    min-height: 500px;
+}
+
+.sidebar{
+    width: 30%;
+    float: right;
+    padding-right: 10px;
+}
+
+.inner-sidebar{
+    background: black;
+    min-height: 500px;
+}
+
+.footer{
+    background: black;
+    height: 200px;
+    margin-top: 10px;
+}
