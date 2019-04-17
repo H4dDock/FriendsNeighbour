@@ -1,6 +1,7 @@
 <#import "parts/commonPage.ftl" as c>
-<#import "parts/authorisation.ftl" as auth>
+<#import "parts/authorisation.ftl" as autho>
 
 <@c.page>
-    <@auth.login "/login" false/>
+    Login page
+    <@autho.login "/login" false/>
 </@c.page>

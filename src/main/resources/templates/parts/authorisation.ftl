@@ -11,12 +11,20 @@
             <div class="col-sm-5">
                 <input class="form-control" type="password" name="password" placeholder="Password"/>
             </div>
-        <input type="hidden" name="_csrf" value="${_csrf.token}"/>
         </div>
-        <button type="submit" class="btn btn-primary mb-3"><#if isRegisterFrom>Register<#else>Sign in</#if></button>
+        <input type="hidden" name="_csrf" value="${_csrf.token}"/>
+        <button type="submit" class="btn btn-primary mb-3"><#if !isRegisterFrom>Sign in<#else>Register</#if></button>
         <div><#if !isRegisterFrom><a href="/registration">Add new user</a></#if></div>
     </form>
 </#macro>
+<#--<#macro login path>
+    <form action="${path}" method="post">
+        <div><label> User Name : <input type="text" name="username"/> </label></div>
+        <div><label> Password: <input type="password" name="password"/> </label></div>
+        <input type="hidden" name="_csrf" value="${_csrf.token}" />
+        <div><input type="submit" value="Sign In"/></div>
+    </form>
+</#macro>-->
 
 <#macro logout>
     <form action="/logout" method="post">

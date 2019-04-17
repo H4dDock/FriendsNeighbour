@@ -1,17 +1,27 @@
-package ru.koval.CompanyStuff;
+package ru.koval.domain;
 
+import ru.koval.CompanyStuff.CompanyTypes;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "cmpny")
 public class Company {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
     private String companyName;
     private CompanyTypes type;
 
-    public Company(String companyName, CompanyTypes type) {
-        this.companyName = companyName;
-        this.type = type;
+    public Company() {
     }
 
-    public Company(String companyName, String type) {
-        this.companyName = companyName;
-        this.type = CompanyTypes.valueOf(type);
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public void setCompanyName(String companyName) {
