@@ -1,6 +1,6 @@
 package ru.koval.domain;
 
-import ru.koval.CompanyStuff.CompanyTypes;
+import ru.koval.CompanyStaff.CompanyTypes;
 
 import javax.persistence.*;
 
@@ -9,18 +9,18 @@ import javax.persistence.*;
 public class Company {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Long id;
     private String companyName;
     private CompanyTypes type;
 
     public Company() {
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

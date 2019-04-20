@@ -6,7 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import ru.koval.domain.User;
-import ru.koval.UsersStuff.UsersRoles;
+import ru.koval.UsersStaff.UsersRoles;
 import ru.koval.repos.UserRepo;
 
 import java.sql.SQLException;

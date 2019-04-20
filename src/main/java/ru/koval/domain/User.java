@@ -2,7 +2,7 @@ package ru.koval.domain;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import ru.koval.UsersStuff.UsersRoles;
+import ru.koval.UsersStaff.UsersRoles;
 
 import javax.persistence.*;
 import java.util.Collection;

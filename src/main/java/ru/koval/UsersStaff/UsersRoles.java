@@ -1,4 +1,4 @@
-package ru.koval.UsersStuff;
+package ru.koval.UsersStaff;
 
 import org.springframework.security.core.GrantedAuthority;
 
