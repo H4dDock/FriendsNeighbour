@@ -22,13 +22,19 @@
             </li>
             </#if>
 
+            <#if isUser>
+                <li class="nav-item">
+                    <a class="nav-link" href="/message">Messages</a>
+                </li>
+            </#if>
+
             <#if !isUser>
             <li class="nav-item">
                 <a class="nav-link" href="/registration">Registration</a>
             </li>
             </#if>
 
-            <#if isAdmin>
+            <#if isUser>
                 <li class="nav-item">
                     <a class="nav-link" href="/user/userList">Users list</a>
                 </li>

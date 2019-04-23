@@ -1,6 +1,16 @@
 <#import "parts/commonPage.ftl" as c>
 
 <@c.page>
+    <form action="/user/viewProfile" method="post">
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label"> User Name:</label>
+            <div class="col-sm-5">
+                <input class="form-control" type="text" name="username" placeholder="Find user"/>
+            </div>
+            <div><button type="submit" class="btn btn-primary mb-3">find</button></div>
+        </div>
+        <input type="hidden" name="_csrf" value="${_csrf.token}"/>
+    </form>
     <table>
         <thead>
         <tr>
