@@ -9,11 +9,9 @@ import org.springframework.web.bind.annotation.*;
 import ru.koval.UsersStaff.UsersRoles;
 import ru.koval.domain.User;
 import ru.koval.repos.UserRepo;
+import ru.koval.service.UserService;
 
-import java.util.Arrays;
 import java.util.Map;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/user")
@@ -21,9 +19,12 @@ public class UserController {
     @Autowired
     private UserRepo userRepo;
 
+    @Autowired
+    private UserService userService;
+
     @RequestMapping("/userList")
     public String userListPage(Model model){
-        model.addAttribute("users",userRepo.findAll());
+        model.addAttribute("users",userService.getAllUsers());
 
         return "userList";
     }
@@ -39,20 +40,14 @@ public class UserController {
     public String editProfile(Model model, @AuthenticationPrincipal User user, @RequestParam(name = "newPassword") String newPass) {
         model.addAttribute("user", user);
 
-        boolean isEmailChanged= (newPass != null && !newPass.equals(user.getPassword())) ||
-                (user.getPassword() != null && !user.getPassword().equals(newPass));
-
-        if(isEmailChanged){
-            user.setPassword(newPass);
-            userRepo.save(user);
-        }
+        userService.saveChanges(user, newPass);
 
         return  "redirect:/user/profile";
     }
 
     @PostMapping("/viewProfile")
     public String viewUsersProfile(@RequestParam String username, Model model) {
-        model.addAttribute("user", userRepo.findByUsername(username));
+        model.addAttribute("user", userService.findUserByUsername(username));
 
         return "viewProfile";
     }
@@ -69,23 +64,8 @@ public class UserController {
     @PreAuthorize("hasAuthority('Admin')")
     @PostMapping
     public String userEditForm(@RequestParam String username, @RequestParam Map<String, String> form, Model model) {
-        User user = userRepo.findByUsername(username);
 
-        Set<String> roles = Arrays.stream(UsersRoles.values())
-                .map(UsersRoles::name)
-                .collect(Collectors.toSet());
-
-        user.getRoles().clear();
-
-        for (String key : form.keySet()) {
-            if (roles.contains(key)) {
-                user.getRoles().add(UsersRoles.valueOf(key));
-            }
-        }
-
-        userRepo.save(user);
-
-        model.addAttribute("user", user);
+        model.addAttribute("user", userService.editUserByAdmin(username,form));
         model.addAttribute("roles", UsersRoles.values());
 
         return "editProfileByAdmin";
